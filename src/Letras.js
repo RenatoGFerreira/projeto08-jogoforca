@@ -4,7 +4,7 @@ import letras from "./components/letras"
 export default function Letras(){
     return(
         <BotoesLetras>
-            {letras.map((i)=><button className="clique-letras">{i.toUpperCase()}</button>)}
+            {letras.map((letra, index)=><button className="clique-letras" key={index}>{letra.toUpperCase()}</button>)}
         </BotoesLetras>
     )
 }

@@ -1,21 +1,34 @@
+import { useState } from "react"
 import styled from "styled-components"
-import forca from "./assets/forca0.png"
+import forca from "./components/forca"
+import palavras from "./components/palavras"
 
 export default function Jogo() {
+
+    const [errou, setErrou] = useState(0)
+
+    function sortearPalavra(){
+        const numeroAleatorio = Math.floor(Math.random() * palavras.length)
+        const palavraSelecionada = palavras[numeroAleatorio]
+        const arrayPalavra = palavraSelecionada.split("")
+
+        console.log(palavraSelecionada)
+        console.log(arrayPalavra)
+
+    }
 
     return (
         <Cenario>
             <div>
-                <img src={forca} className="img-forca" alt="imagem do jogo"/>
+                <img src={forca[errou]} className="img-forca" alt="imagem do jogo"/>
             </div>
             <div className="informacoes">
                 <div>
-                    <button className="palavra-sorteada">Escolher Palavra</button>
+                    <button onClick={sortearPalavra} className="palavra-sorteada">Escolher Palavra</button>
                 </div>
                 <div className="palavra-escondida">
                     <h1>PALAVRA</h1>
                 </div>
-
             </div>
         </Cenario>
     )
