@@ -1,20 +1,23 @@
 import styled from "styled-components"
+import GlobalStyle from "./css/GlobalStyle"
 import Jogo from "./Jogo"
+import Letras from "./Letras"
+import Chute from "./Chutes"
 
-function App() {
-  return (
+export default function App() {
+  return ( 
     <ScreenContainer>
+      <GlobalStyle/>
       <Jogo/>
+      <Letras/>
+      <Chute/>
     </ScreenContainer>
   );
 }
 
-export default App;
 
 
 const ScreenContainer = styled.div`
-
-
   html, body{
       font-family: Arial, Helvetica, sans-serif;
       box-sizing: border-box;
@@ -22,6 +25,5 @@ const ScreenContainer = styled.div`
   width: 50vw;
   height: 100vh;
   margin: 0 auto;
-  border: 1px solid red;
 `
 

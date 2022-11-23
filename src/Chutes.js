@@ -1,26 +1,30 @@
 import styled from "styled-components"
-import letras from "./components/letras"
-
-export default function Letras(){
-    return(
-        <BotoesLetras>
-            {letras.map((i)=><button className="clique-letras">{i.toUpperCase()}</button>)}
-        </BotoesLetras>
+export default function Chutes() {
+    return (
+        <Tentativas>
+            <span>Já sei a palavra! &#128540;</span>
+            <input className="input-tentativas"/>
+            <button className="clique-letras">Chutar</button>
+        </Tentativas>
     )
 }
 
-const BotoesLetras = styled.div`
-    width: 80%;
-    margin: 5px auto;
+const Tentativas = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    align-content: space-around;
+    margin-top: 10px;
+
+    .input-tentativas{
+        width: 300px;
+        height: 30px;
+        color: blue;
+        margin: 0 10px;
+    }
 
     .clique-letras{
-        min-width: 40px;
+        min-width: 80px;
         height: 40px;
         background-color:aqua;
         color: blue;
@@ -40,5 +44,4 @@ const BotoesLetras = styled.div`
         border-radius: 3px;
         cursor: default;
     }
-
 `
