@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components"
+import Jogo from "./Jogo"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ScreenContainer>
+      <Jogo/>
+    </ScreenContainer>
   );
 }
 
 export default App;
+
+
+const ScreenContainer = styled.div`
+
+
+  html, body{
+      font-family: Arial, Helvetica, sans-serif;
+      box-sizing: border-box;
+  }
+  width: 50vw;
+  height: 100vh;
+  margin: 0 auto;
+  border: 1px solid red;
+`
+
