@@ -6,15 +6,20 @@ import palavras from "./components/palavras"
 export default function Jogo() {
 
     const [errou, setErrou] = useState(0)
+    const [palavraEscondida, setPalavraEscondida] = useState([])
 
     function sortearPalavra(){
         const numeroAleatorio = Math.floor(Math.random() * palavras.length)
         const palavraSelecionada = palavras[numeroAleatorio]
         const arrayPalavra = palavraSelecionada.split("")
 
+        let tracos = []
+        arrayPalavra.forEach(letra => (tracos.push(' _ ')))
+        setPalavraEscondida(tracos)
+
+        console.log(palavraEscondida)
         console.log(palavraSelecionada)
         console.log(arrayPalavra)
-
     }
 
     return (
@@ -27,7 +32,7 @@ export default function Jogo() {
                     <button onClick={sortearPalavra} className="palavra-sorteada">Escolher Palavra</button>
                 </div>
                 <div className="palavra-escondida">
-                    <h1>PALAVRA</h1>
+                    <h1>{palavraEscondida}</h1>
                 </div>
             </div>
         </Cenario>
