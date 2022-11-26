@@ -16,10 +16,12 @@ export default function Jogo() {
         let tracos = []
         arrayPalavra.forEach(letra => (tracos.push(' _ ')))
         setPalavraEscondida(tracos)
-
         console.log(palavraEscondida)
+        
+
         console.log(palavraSelecionada)
         console.log(arrayPalavra)
+
     }
 
     return (
