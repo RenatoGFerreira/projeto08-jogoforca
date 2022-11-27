@@ -1,10 +1,12 @@
 import styled from "styled-components"
-export default function Chutes() {
+
+
+export default function Chutes(props) {
     return (
         <Tentativas>
             <span>Já sei a palavra! &#128540;</span>
-            <input className="input-tentativas"/>
-            <button className="clique-letras">Chutar</button>
+            <input className="input-tentativas" />
+            <button className="clique-letras" disabled={props.desativaInputs}>Chutar</button>
         </Tentativas>
     )
 }
