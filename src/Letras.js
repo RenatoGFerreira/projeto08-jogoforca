@@ -1,24 +1,15 @@
-import { useState } from "react"
 import styled from "styled-components"
 import letras from "./components/letras"
 
-export default function Letras(){
-    
-    const [letrasUsadas, setLetrasUsadas] = useState([])
-    console.log('letrasUsadas:' + letrasUsadas)
-    
-    function letraEscolhida(letra){
-        setLetrasUsadas([...letrasUsadas, letra])
-        
-    }
+export default function Letras(props){
     return(
         <BotoesLetras>
             {letras.map((letra, index)=>
             <button 
-                onClick={() => letraEscolhida(letra)}
+                onClick={() => props.letraEscolhida(letra)}
                 className="clique-letras" 
                 key={index}
-                disabled={letrasUsadas.includes(letra)}
+                disabled={props.letrasUsadas.includes(letra)}
             >
             {letra.toUpperCase()}</button>)}
 
