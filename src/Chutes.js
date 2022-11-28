@@ -1,9 +1,12 @@
+import GLobalStyle from "./estiloGLobal/GlobalStyle"
 import styled from "styled-components"
+
 
 
 export default function Chutes(props) {
     return (
         <Tentativas>
+            <GLobalStyle/>
             <span>Já sei a palavra! &#128540;</span>
             <input 
             className="input-tentativas" 

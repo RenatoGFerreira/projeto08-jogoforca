@@ -1,17 +1,28 @@
+import GlobalStyle from "./estiloGLobal/GlobalStyle"
 import styled from "styled-components"
 import forca from "./components/forca"
 
 export default function Jogo(props) {
     return (
         <Cenario>
+            <GlobalStyle/>
             <div>
                 <img src={forca[props.errou]} className="img-forca" alt="imagem do jogo" data-test="game-image"/>
             </div>
             <div className="informacoes">
                 <div>
-                    <button onClick={props.sortearPalavra} className="palavra-sorteada" data-test="choose-word">Escolher Palavra</button>
+
+                    <button 
+                    onClick={props.sortearPalavra} 
+                    className="palavra-sorteada" 
+                    data-test="choose-word"
+                    >
+                        Escolher Palavra
+                    </button>
+
                 </div>
                 <div className="palavra-escondida">
+
                     <h1 
                     className={props.corPalavra} 
                     data-test="word"
@@ -19,6 +30,7 @@ export default function Jogo(props) {
                     >
                         {props.palavraEscondida}
                     </h1>
+
                 </div>
             </div>
         </Cenario>

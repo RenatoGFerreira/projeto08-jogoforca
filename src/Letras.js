@@ -1,9 +1,11 @@
+import GlobalStyle from "./estiloGLobal/GlobalStyle"
 import styled from "styled-components"
 import letras from "./components/letras"
 
 export default function Letras(props){
     return(
         <BotoesLetras>
+            <GlobalStyle/>
             {letras.map((letra, index)=>
             <button 
                 onClick={() => props.letraEscolhida(letra)}

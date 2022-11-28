@@ -1,5 +1,5 @@
+import GlobalStyle from "./estiloGLobal/GlobalStyle"
 import styled from "styled-components"
-import GlobalStyle from "./css/GlobalStyle"
 import Jogo from "./Jogo"
 import Letras from "./Letras"
 import letras from "./components/letras"
@@ -18,21 +18,18 @@ export default function App() {
   const [corPalavra, setCorPalavra] = useState("normal-palavra")
   const [jaSei, setJaSei] = useState("")
 
-  ///palavraChave, corPalavra, chute
 
     function iniciaOJogo(){
+      console.log("INICIO DO JOGO")
       setErrou(0)
       sortearPalavra()
       setDesativaInputs(false)
       setLetrasUsadas([])
       setCorPalavra("normal-palavra")
-
-      console.log("Iniciou o JOGO")
+      
     }
 
-
-
-    function letraEscolhida(letra){                                 //<------ Letra Escolhida
+    function letraEscolhida(letra){                  
         setLetrasUsadas([...letrasUsadas, letra])
       
         if(palavraDoJogo.includes(letra)){
@@ -42,9 +39,8 @@ export default function App() {
         }
     }
 
-    function acertouLetra(letrinha){                              //<----- Se acertar letra
+    function acertouLetra(letrinha){                    
       const palavraDinamica = [...palavraEscondida]
-      console.log( "acertoumizera")
 
       palavraChave.forEach((l, i)=>{
         if(palavraDoJogo[i] === letrinha){
@@ -61,10 +57,9 @@ export default function App() {
 
     }
 
-    function errouLetra(letrinha){                                  //<----- Se errar a letra
+    function errouLetra(letrinha){
       const totalErros = errou + 1
       setErrou(totalErros)
-      console.log("erro mizeravel")
 
       if(totalErros === 6){
         setCorPalavra("errou-palavra")
@@ -82,13 +77,12 @@ export default function App() {
         let tracos = []
         arrayPalavra.forEach(letra => (tracos.push(' _ ')))
         setPalavraEscondida(tracos)
-        setPalavraDoJogo(palavraSelecionada)
 
-        console.log(`palavraChave: ${palavraChave}`)
-        console.log(`palavraEscondida: ${palavraEscondida}`)
-        console.log(`palavraSelecionada: ${palavraSelecionada}`)
-        console.log(`arrayPalavra: ${arrayPalavra}`)
-        console.log(`palavraDoJogo: ${palavraDoJogo}`)
+        const palavraFormatada = palavraSelecionada.normalize("NFD").replace(/[^a-z\s]/g, "");
+        setPalavraDoJogo(palavraFormatada)
+
+
+        console.log(`Palavra Chave: ${palavraSelecionada}`)
 
     }
 
@@ -96,7 +90,7 @@ export default function App() {
       let palavraChute = ""
       palavraChave.forEach((l)=> palavraChute += l)
 
-      if(palavraChute === jaSei){
+      if(palavraChute.toLowerCase === jaSei.toLowerCase){
         setCorPalavra("acertou-palavra")
         fimDeJogo()
       }else{
