@@ -12,7 +12,7 @@ export default function Jogo(props) {
                     <button onClick={props.sortearPalavra} className="palavra-sorteada">Escolher Palavra</button>
                 </div>
                 <div className="palavra-escondida">
-                    <h1>{props.palavraEscondida}</h1>
+                    <h1 className={props.corPalavra}>{props.palavraEscondida}</h1>
                 </div>
             </div>
         </Cenario>

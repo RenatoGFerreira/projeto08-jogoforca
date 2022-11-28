@@ -14,9 +14,13 @@ export default function App() {
   const [letrasUsadas, setLetrasUsadas] = useState(letras)
   const [palavraEscondida, setPalavraEscondida] = useState([]) 
   const [palavraDoJogo, setPalavraDoJogo] = useState("")
+  const [palavraChave, setPalavraChave] = useState([])
+  const [corPalavra, setCorPalavra] = useState("normal-palavra")
 
+  ///palavraChave, corPalavra, chute
 
     function iniciaOJogo(){
+      setErrou(0)
       sortearPalavra()
       setDesativaInputs(false)
       setLetrasUsadas([])
@@ -38,8 +42,20 @@ export default function App() {
 
     function acertouLetra(letrinha){                              //<----- Se acertar letra
       const palavraDinamica = [...palavraEscondida]
-      console.log( + "acertoumizera")
-  
+      console.log( "acertoumizera")
+
+      palavraChave.forEach((l, i)=>{
+        if(palavraDoJogo[i] === letrinha){
+          palavraDinamica[i] = l
+        }
+      })
+
+      setPalavraEscondida(palavraDinamica)
+
+      if(!palavraDinamica.includes(' _ ')){
+        setCorPalavra("acertou-palavra")
+        fimDeJogo()
+      }
 
     }
 
@@ -51,10 +67,10 @@ export default function App() {
       console.log("erro mizeravel")
 
       if(totalErros === 6){
+        setCorPalavra("errou-palavra")
         fimDeJogo()
       }
     }
-
 
     
     function sortearPalavra(){
@@ -62,11 +78,15 @@ export default function App() {
         const palavraSelecionada = palavras[numeroAleatorio]
         const arrayPalavra = palavraSelecionada.split("")
 
+        setPalavraChave(arrayPalavra)
+
+
         let tracos = []
         arrayPalavra.forEach(letra => (tracos.push(' _ ')))
         setPalavraEscondida(tracos)
         setPalavraDoJogo(palavraSelecionada)
 
+        console.log(`palavraChave: ${palavraChave}`)
         console.log(`palavraEscondida: ${palavraEscondida}`)
         console.log(`palavraSelecionada: ${palavraSelecionada}`)
         console.log(`arrayPalavra: ${arrayPalavra}`)
@@ -80,10 +100,12 @@ export default function App() {
       console.log("FIM DE JOGO")
     }
 
+
+
   return ( 
     <ScreenContainer>
       <GlobalStyle/>
-      <Jogo errou={errou} sortearPalavra={iniciaOJogo} palavraEscondida={palavraEscondida}/>
+      <Jogo errou={errou} sortearPalavra={iniciaOJogo} palavraEscondida={palavraEscondida} corPalavra={corPalavra}/>
       <Letras letraEscolhida={letraEscolhida} letrasUsadas={letrasUsadas} />
       <Chute desativaInputs={desativaInputs}/>
     </ScreenContainer>
@@ -100,5 +122,28 @@ const ScreenContainer = styled.div`
   width: 50vw;
   height: 100vh;
   margin: 0 auto;
+
+
+  .normal-palavra{
+    color: default;
+    font-size: 30pt;
+    font-weight: 600;
+    text-transform: lowercase;
+  }
+
+  .acertou-palavra{
+      color: green;
+      font-size: 30pt;
+      font-weight: 900;
+      text-transform: uppercase;
+
+  }
+
+  .errou-palavra{
+      color: red;
+      font-size: 30pt;
+      font-weight: 900;
+      text-transform: uppercase;
+  }
 `
 
