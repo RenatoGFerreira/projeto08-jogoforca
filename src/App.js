@@ -119,9 +119,23 @@ export default function App() {
   return ( 
     <ScreenContainer>
       <GlobalStyle/>
-      <Jogo errou={errou} sortearPalavra={iniciaOJogo} palavraEscondida={palavraEscondida} corPalavra={corPalavra} palavraDoJogo={palavraDoJogo}/>
-      <Letras letraEscolhida={letraEscolhida} letrasUsadas={letrasUsadas} />
-      <Chute jaSei={jaSei} jaSeiPalavra={jaSeiPalavra} setJaSei={setJaSei} desativaInputs={desativaInputs}/>
+      <Jogo 
+        errou={errou} 
+        sortearPalavra={iniciaOJogo} 
+        palavraEscondida={palavraEscondida} 
+        corPalavra={corPalavra} 
+        palavraDoJogo={palavraDoJogo}
+      />
+      <Letras 
+        letraEscolhida={letraEscolhida} 
+        letrasUsadas={letrasUsadas} 
+      />
+      <Chute 
+        jaSei={jaSei} 
+        jaSeiPalavra={jaSeiPalavra} 
+        setJaSei={setJaSei} 
+        desativaInputs={desativaInputs}
+      />
     </ScreenContainer>
   );
 }

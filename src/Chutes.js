@@ -9,6 +9,7 @@ export default function Chutes(props) {
             className="input-tentativas" 
             value={props.jaSei} onChange={(e) => props.setJaSei(e.target.value)} 
             data-test="guess-input"
+            disabled={props.desativaInputs}
             />
             <button 
             className="clique-letras" 
