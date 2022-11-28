@@ -10,6 +10,7 @@ export default function Letras(props){
                 className="clique-letras" 
                 key={index}
                 disabled={props.letrasUsadas.includes(letra)}
+                data-test="letter"
             >
             {letra.toUpperCase()}</button>)}
 

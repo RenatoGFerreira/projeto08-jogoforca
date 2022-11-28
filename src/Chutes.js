@@ -5,8 +5,19 @@ export default function Chutes(props) {
     return (
         <Tentativas>
             <span>Já sei a palavra! &#128540;</span>
-            <input className="input-tentativas" />
-            <button className="clique-letras" disabled={props.desativaInputs}>Chutar</button>
+            <input 
+            className="input-tentativas" 
+            value={props.jaSei} onChange={(e) => props.setJaSei(e.target.value)} 
+            data-test="guess-input"
+            />
+            <button 
+            className="clique-letras" 
+            onClick={props.jaSeiPalavra} 
+            disabled={props.desativaInputs}
+            data-test="guess-button"
+            >
+                Chutar
+            </button>
         </Tentativas>
     )
 }

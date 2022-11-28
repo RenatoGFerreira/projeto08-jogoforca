@@ -16,6 +16,7 @@ export default function App() {
   const [palavraDoJogo, setPalavraDoJogo] = useState("")
   const [palavraChave, setPalavraChave] = useState([])
   const [corPalavra, setCorPalavra] = useState("normal-palavra")
+  const [jaSei, setJaSei] = useState("")
 
   ///palavraChave, corPalavra, chute
 
@@ -24,6 +25,7 @@ export default function App() {
       sortearPalavra()
       setDesativaInputs(false)
       setLetrasUsadas([])
+      setCorPalavra("normal-palavra")
 
       console.log("Iniciou o JOGO")
     }
@@ -59,8 +61,6 @@ export default function App() {
 
     }
 
-
-
     function errouLetra(letrinha){                                  //<----- Se errar a letra
       const totalErros = errou + 1
       setErrou(totalErros)
@@ -72,14 +72,12 @@ export default function App() {
       }
     }
 
-    
     function sortearPalavra(){
         const numeroAleatorio = Math.floor(Math.random() * palavras.length)
         const palavraSelecionada = palavras[numeroAleatorio]
         const arrayPalavra = palavraSelecionada.split("")
 
         setPalavraChave(arrayPalavra)
-
 
         let tracos = []
         arrayPalavra.forEach(letra => (tracos.push(' _ ')))
@@ -94,9 +92,25 @@ export default function App() {
 
     }
 
+    function jaSeiPalavra(){
+      let palavraChute = ""
+      palavraChave.forEach((l)=> palavraChute += l)
+
+      if(palavraChute === jaSei){
+        setCorPalavra("acertou-palavra")
+        fimDeJogo()
+      }else{
+        setErrou(6)
+        setCorPalavra("errou-palavra")
+        fimDeJogo()
+      }
+    }
+
     function fimDeJogo(){
+      setPalavraEscondida(palavraChave)
       setDesativaInputs(true)
       setLetrasUsadas(letras)
+      setJaSei("")
       console.log("FIM DE JOGO")
     }
 
@@ -105,9 +119,9 @@ export default function App() {
   return ( 
     <ScreenContainer>
       <GlobalStyle/>
-      <Jogo errou={errou} sortearPalavra={iniciaOJogo} palavraEscondida={palavraEscondida} corPalavra={corPalavra}/>
+      <Jogo errou={errou} sortearPalavra={iniciaOJogo} palavraEscondida={palavraEscondida} corPalavra={corPalavra} palavraDoJogo={palavraDoJogo}/>
       <Letras letraEscolhida={letraEscolhida} letrasUsadas={letrasUsadas} />
-      <Chute desativaInputs={desativaInputs}/>
+      <Chute jaSei={jaSei} jaSeiPalavra={jaSeiPalavra} setJaSei={setJaSei} desativaInputs={desativaInputs}/>
     </ScreenContainer>
   );
 }
