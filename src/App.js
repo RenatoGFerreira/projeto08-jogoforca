@@ -26,8 +26,9 @@ export default function App() {
       setDesativaInputs(false)
       setLetrasUsadas([])
       setCorPalavra("normal-palavra")
-      
     }
+
+
 
     function letraEscolhida(letra){                  
         setLetrasUsadas([...letrasUsadas, letra])
@@ -90,7 +91,7 @@ export default function App() {
       let palavraChute = ""
       palavraChave.forEach((l)=> palavraChute += l)
 
-      if(palavraChute.toLowerCase === jaSei.toLowerCase){
+      if(palavraChute === jaSei){
         setCorPalavra("acertou-palavra")
         fimDeJogo()
       }else{
